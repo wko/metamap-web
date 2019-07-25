@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Crosswalk{% endblock %}
+
+{% block content %}
+<p>
+  Mapping of UMLS CUIs to SNOMDED concepts
+  </p>
+<form action="/crosswalk" accept-charset="UTF-8" method="post" class="form-inline">
+      <input name="utf8" type="hidden" value="✓">
+      <div class="form-group">
+        <label for="data">CUI</label>
+        <input type="text" name="data" id="data" class="form-control" placeholder="C0022885">
+      </div>
+      <button type="submit" class="btn btn-primary">  Submit</button>
+</form>
+{% endblock %}
+{% block results %}
+<h2>
+  Corresponding SNOMED concepts:
+  </h2>
+{% endblock %}

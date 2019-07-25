@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}MetaMap Tagger{% endblock %}
+
+{% block content %}
+<form action="/metamaphuman" accept-charset="UTF-8" method="post">
+      <input name="utf8" type="hidden" value="✓">
+      Search is using the MetaMap Tagger to find SNOMED CT concepts.
+      <div class="form-group">
+        <label for="data">Text</label>
+        <textarea name="data" id="data"  class="form-control">{{ g.input }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="options">Processing Options</label>
+        <input type="text" class="form-control" name="options" id="options" value="{{ g.opts }}">
+        </div>
+      <button type="submit" class="btn btn-primary">  Submit</button>
+
+</form>
+{% endblock %}
+{% block results %}
+<h2>Found concepts</h2>
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <th>
+      SNOMED ID
+    </th>
+    <th>
+      CUI
+      </th>
+    <th>
+      UMLS Concept Name
+    </th>
+    
+    <th>
+      Phrase
+    </th>
+
+  </thead>
+  {% for r in g.results %}
+  <tr>
+
+    <td>
+      {{ r['snomedid'] }}
+      
+    </td>
+    <td>
+      {{ r['cui'] }}
+      </td>
+    <td>
+      {{ r['label'] }}
+    </td>
+    
+    <td>
+      {{ r['phrase'] }}
+    </td>
+  
+
+  </tr>
+  {% endfor %}
+  
+</table>
+  
+
+
+
+{% endblock %}
